@@ -2,7 +2,7 @@
 #
 # cpan-upload - upload one or more file to CPAN (via PAUSE)
 #
-# $Id: cpan-upload,v 2.1 2002/06/26 10:14:53 neilb Exp $
+# $Id: cpan-upload,v 2.2 2002/07/02 21:44:10 neilb Exp $
 #
 
 use strict;
@@ -15,7 +15,7 @@ use LWP::UserAgent;
 use HTTP::Status;
 use File::Basename;
 
-$VERSION = sprintf("%d.%d", q$Revision: 2.1 $ =~ /(\d+)\.(\d+)/);
+$VERSION = sprintf("%d.%d", q$Revision: 2.2 $ =~ /(\d+)\.(\d+)/);
 
 
 #-----------------------------------------------------------------------
@@ -76,6 +76,7 @@ sub initialise
     }
     $config = AppConfig::Std->new();
     $config->define('user');
+    $config->define('directory', {ARGCOUNT => 1, ALIAS => 'dir'});
     $config->define('password', { EXPAND   => 0 });
     $config->define('mailto');
     $config->define('ftp_gateway');
@@ -261,6 +262,7 @@ sub pause_add_files
     my $request;
     my $response;
     my $agent;
+    my $argref;
 
 
     _verbose("registering upload with PAUSE web server\n");
@@ -287,12 +289,17 @@ sub pause_add_files
         #---------------------------------------------------------------
         # Create the request to add the file
         #---------------------------------------------------------------
-        $request = POST($PAUSE_ADD_URI,
-                   {
+	$argref = {
                     HIDDENNAME                    => $config->user(),
                     pause99_add_uri_upload        => $basename,
                     SUBMIT_pause99_add_uri_upload => " Upload the checked file "
-                   });
+                   };
+	if ($config->directory)
+	{
+	    $argref->{'pause99_add_uri_subdirtext'} = $config->directory;
+	}
+
+        $request = POST($PAUSE_ADD_URI, $argref);
         $request->authorization_basic($config->user, $config->password);
 
         _debug("----- REQUEST BEGIN -----\n",
@@ -437,6 +444,10 @@ Your PAUSE username (which you previously registered with PAUSE).
 
 The password for your PAUSE username.
 
+=item -directory <string> | -dir <string>
+
+A subdirectory in your CPAN area where the file should be uploaded to.
+
 =item -mailto <email>
 
 Your email address, to include the HTTP request header.
@@ -501,6 +512,10 @@ This just saves you from typing it every time you run the script.
 =item B<password> I<password>
 
 This is used to specify your PAUSE password.
+
+=item B<directory> I<path>
+
+Specify a subdirectory in your CPAN area.
 
 =item B<ftp_gateway> I<HOST>
 
@@ -635,7 +650,7 @@ for a PAUSE password.
 
 =head1 VERSION
 
-$Revision: 2.1 $
+$Revision: 2.2 $
 
 =head1 SCRIPT CATEGORIES
 

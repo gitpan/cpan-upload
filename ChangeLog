@@ -1,6 +1,11 @@
 
 				ChangeLog
 
+2.2 neilb 04-jul-2002
+
+	* Added a -directory option (with -dir alias) for specifying
+	  a subdirectory in your CPAN directory. Suggested by Ilya.
+
 2.1 neilb 01-jul-2002
 
 	* changed all references to pause.kbx.de to pause.perl.org
