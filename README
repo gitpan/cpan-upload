@@ -1,15 +1,22 @@
 
 				cpan-upload
-				   v1.3
+				   v1.8
 
 This is a script for uploading a distribution to CPAN (using PAUSE,
-the Perl Authors Upload SErver). The upload happens in two steps:
+the Perl Authors Upload SErver). For example, to upload this version
+I will just run:
+
+	% cpan-upload -verbose cpan-upload-1.06.tar.gz
+
+The upload happens in two steps:
 
      *	first we ftp the file to the upload ftp site
      *	we POST a message to the PAUSE web site
 
 Before using the script you must register with PAUSE to get a username
-and password.
+and password. See the following for more details:
+
+	http://www.cpan.org/modules/04pause.html
 
 To install this script, you should just have to run the following:
 
@@ -19,15 +26,17 @@ To install this script, you should just have to run the following:
 The script is fully documented using pod. Once installed you should get
 a man page. It also supports two informational switches:
 
-	-help	display a short help message
-	-doc	format the pod documentation to the tty
+	-help	display a short help message describing command-line options
+	-doc	display the complete pod documentation for cpan-upload
 
 The script requires several modules from CPAN. You can get the latest
 version via the CPAN multiplexor at http://www.perl.com/CPAN/
 
 	What		Where
-	App::Config	modules/by-module/App/
-	Pod::Usage	modules/by-module/Pod/
+
+	AppConfig::Std	$CPAN/authors/id/NEILB/AppConfig-Std-<version>.tar.gz
+	AppConfig	modules/by-module/AppConfig/
+	Pod::Usage	In the PodParser distribition
 	Net::FTP	in the libnet distribution
 	LWP		http://www.perl.com/CPAN/modules/by-module/LWP/
 
@@ -37,4 +46,4 @@ Neil Bowers <neilb@cre.canon.co.uk>
 Canon Research Centre Europe
 http://www.cre.canon.co.uk/
 --
-RCS ID: $Id: README,v 1.4 1998/07/24 11:19:45 neilb Exp $
+$Id: README,v 1.7 2001/03/06 17:18:11 neilb Exp $
