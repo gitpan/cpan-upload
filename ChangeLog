@@ -1,0 +1,14 @@
+
+				ChangeLog
+
+1.2 neilb 2-april-1998
+
+	The password was set to be expanded for variables by App::Config,
+	since this is the default. Turned off this feature for password,
+	since it can cause weirdness if you have potential variable refs
+	in your PAUSE password. Thanks to Andy Wardley for having a
+	bizarro password.
+
+1.1 neilb
+
+	first public release. only announced to p5p.
