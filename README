@@ -1,6 +1,6 @@
 
 				cpan-upload
-				   v2.0
+				   v2.1
 
 This is a script for uploading one or more distributions to CPAN using PAUSE,
 the Perl Authors Upload SErver. For example, to upload a previous version of
@@ -47,4 +47,4 @@ I'd be happy to hear of any suggestions for improving this script.
 
 Neil Bowers <neil@bowers.com>
 --
-$Id: README,v 2.0 2002/01/29 17:19:13 neilb Exp $
+$Id: README,v 2.1 2002/06/26 10:14:52 neilb Exp $

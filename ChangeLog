@@ -1,6 +1,10 @@
 
 				ChangeLog
 
+2.1 neilb 01-jul-2002
+
+	* changed all references to pause.kbx.de to pause.perl.org
+
 2.0 neilb 08-feb-2002
 
 	* If you don't give your CPAN password in .pause or via a switch,
