@@ -1,6 +1,22 @@
 
 				ChangeLog
 
+2.0 neilb 08-feb-2002
+
+	* If you don't give your CPAN password in .pause or via a switch,
+	  you'll now be prompted for it, with echo'ing turned off.
+	  Suggested by Ed Avis. This added a dependency on Term::ReadKey.
+	* If an ftp upload of a file fails, then you're now prompted
+	  to see if you want to continue. We now only try and POST to
+	  the PAUSE site for files which we actually managed to upload :-)
+	  Also suggested by Ed Avis.
+	* Added a -non_interactive (or -ni) switch. If this is given,
+	  then cpan-upload will never prompt (see above two points),
+	  but will also do some default action (eg warn or die).
+	* Various documentation updates.
+	* Updated versions of AppConfig::Std and Pod::Usage that we
+	  depend on - APIs have changed, so need latest versions.
+
 1.9 neilb 11-march-2001
 
 	* Fixed typos in a couple of messages.
@@ -56,3 +72,4 @@
 1.1 neilb
 
 	first public release. only announced to p5p.
+

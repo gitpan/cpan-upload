@@ -1,17 +1,17 @@
 
 				cpan-upload
-				   v1.9
+				   v2.0
 
-This is a script for uploading a distribution to CPAN (using PAUSE,
-the Perl Authors Upload SErver). For example, to upload this version
-I will just run:
+This is a script for uploading one or more distributions to CPAN using PAUSE,
+the Perl Authors Upload SErver. For example, to upload a previous version of
+this script's distribution, I ran:
 
 	% cpan-upload -verbose cpan-upload-1.06.tar.gz
 
 The upload happens in two steps:
 
-     *	first we ftp the file to the upload ftp site
-     *	we POST a message to the PAUSE web site
+     *	first we ftp the file(s) to the upload ftp site
+     *	we POST a message to the PAUSE web site to register the uploads
 
 Before using the script you must register with PAUSE to get a username
 and password. See the following for more details:
@@ -38,12 +38,13 @@ version via the CPAN multiplexor at http://www.perl.com/CPAN/
 	AppConfig	$CPAN/authors/id/ABW/
 	Pod::Usage	In the PodParser distribition
 	Net::FTP	in the libnet distribution
-	LWP		http://www.perl.com/CPAN/modules/by-module/LWP/
+	LWP		$CPAN/modules/by-module/LWP/
+	Term::ReadKey	$CPAN/modules/by-module/Term/
+
+Thanks to Andreas for his help in getting this to talk nicely to PAUSE.
 
 I'd be happy to hear of any suggestions for improving this script.
 
-Neil Bowers <neilb@cre.canon.co.uk>
-Canon Research Centre Europe
-http://www.cre.canon.co.uk/
+Neil Bowers <neil@bowers.com>
 --
-$Id: README,v 1.8 2001/03/11 16:02:47 neilb Exp $
+$Id: README,v 2.0 2002/01/29 17:19:13 neilb Exp $
