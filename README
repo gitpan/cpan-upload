@@ -1,0 +1,39 @@
+
+				cpan-upload
+				   v1.1
+
+This is a script for uploading a distribution to CPAN (using PAUSE,
+the Perl Authors Upload SErver). The upload happens in two steps:
+
+     *	first we ftp the file to the upload ftp site
+     *	we POST a message to the PAUSE web site
+
+Before using the script you must register with PAUSE to get a username
+and password.
+
+To install this script, you should just have to run the following:
+
+	% perl Makefile.PL
+	% make install
+
+The script is fully documented using pod. Once installed you should get
+a man page. It also supports two informational switches:
+
+	-help	display a short help message
+	-doc	format the pod documentation to the tty
+
+The script requires several modules from CPAN. You can get the latest
+version via the CPAN multiplexor at http://www.perl.com/CPAN/
+
+	What		Where
+	App::Config	modules/by-module/App/
+	Net::FTP	in the libnet distribution
+	LWP		http://www.perl.com/CPAN/modules/by-module/LWP/
+
+I'd be happy to hear of any suggestions for improving this script.
+
+Neil Bowers <neilb@cre.canon.co.uk>
+Canon Research Centre Europe
+http://www.cre.canon.co.uk/
+--
+RCS ID: $Id: README,v 1.2 1998/03/22 19:54:00 neilb Exp $
