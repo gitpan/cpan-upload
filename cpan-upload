@@ -2,7 +2,7 @@
 #
 # cpan-upload - upload one or more file to CPAN (via PAUSE)
 #
-# $Id: cpan-upload,v 1.8 2001/03/06 17:17:52 neilb Exp $
+# $Id: cpan-upload,v 1.9 2001/03/11 16:00:09 neilb Exp $
 #
 
 use strict;
@@ -15,7 +15,7 @@ use LWP::UserAgent;
 use HTTP::Status;
 use File::Basename;
 
-$VERSION = sprintf("%d.%d", q$Revision: 1.8 $ =~ /(\d+)\.(\d+)/);
+$VERSION = sprintf("%d.%d", q$Revision: 1.9 $ =~ /(\d+)\.(\d+)/);
 
 
 #-----------------------------------------------------------------------
@@ -36,7 +36,7 @@ initialise();
 ftp_upload_files(@ARGV);
 pause_add_files(@ARGV);
 _verbose(int(@ARGV), int(@ARGV) == 1 ? " file " : " files ",
-         "uploaded successfuly.\n");
+         "uploaded successfully.\n");
 
 exit 0;
 
@@ -281,7 +281,7 @@ sub pause_add_files
         }
         else
         {
-            _debug("\nLooks OK!\n",
+            _debug("Looks OK!\n",
                    "----- RESPONSE BEGIN -----\n",
                    $response->as_string(),
                    "----- RESPONSE END -------\n");
@@ -330,12 +330,12 @@ cpan-upload - upload one or more files to CPAN, using PAUSE
 
 =head1 SYNOPSIS
 
-B<cpan-upload> [options] I<file1> .. I<fileN>
+B<cpan-upload> [OPTIONS] I<file1> .. I<fileN>
 
 =head1 DESCRIPTION
 
 B<cpan-upload> is a script which automates the process of uploading
-a file to CPAN using PAUSE, the Perl Authors Upload SErver:
+a file to CPAN using PAUSE, the Perl Authors Upload Server:
 
 =over 4
 
@@ -356,15 +356,19 @@ See the PAUSE FAQ for details (ses SEE ALSO section below).
 Before using this script you must register with PAUSE,
 to get a username and password.
 If you are a regular uploader to PAUSE, you'll probably want to
-create a C<.pause> configuration file. If not, you can probably
-just use the command-line options, as described below.
+create a C<.pause> configuration file,
+as described in L<"CONFIGURATION FILE"> below.
+If not, you can probably
+just use the command-line options, as described in L<"OPTIONS"> below.
 
 For example, to upload a recent version of the Net::Dict module
 I ran:
 
-    % cpan-upload Net-Dict-1.04.tar.gz
+    % cpan-upload -verbose Net-Dict-1.07.tar.gz
 
-If everything went OK, you'll get a mail message from the PAUSE monitor.
+If everything went OK, you'll get two mail messages from the PAUSE monitor:
+one to acknowledge the upload,
+and one to let you know if your upload made it through to CPAN.
 
 =head1 OPTIONS
 
@@ -429,31 +433,37 @@ set up one of these.
 
 =over 4
 
-=item user <username>
+=item B<user> I<username>
 
 This is used to specify your PAUSE username.
 This just saves you from typing it every time you run the script.
 
-=item password <password>
+=item B<password> I<password>
 
 This is used to specify your PAUSE password.
 
-
-=item ftp_proxy <HOST>
+=item B<ftp_gateway> I<HOST>
 
 Specifies the hostname of your ftp gateway used to get through
 a firewall. For example:
 
-    ftp_proxy = ftp-gw
+    ftp_gateway = ftp-gw
 
-=item http_proxy <URL>
+=item B<ftp_proxy> I<HOST>
+
+Specifies the hostname of your ftp proxy used to get through
+a firewall. For example:
+
+    ftp_proxy = ftp-proxy
+
+=item B<http_proxy> I<URL>
 
 The URL for the proxy to use when making HTTP requests to the PAUSE
 web server. For example:
 
     http_proxy = http://proxy/
 
-=item mailto <EMAIL>
+=item B<mailto> I<EMAIL>
 
 Specifies the email address which is passed in the header of
 the HTTP request, and as the password for the anonymous ftp upload.
@@ -469,11 +479,11 @@ The following is a sample .pause file:
     password thisisnotmyrealpassword
 
     mailto      = neilb@cre.canon.co.uk
-    ftp_proxy   = ftp-gw
+    ftp_gateway = ftp-gw
     http_proxy  = http://proxy.cre.canon.co.uk/
 
 Note that your .pause must not be readable by others,
-since it can contain your PAUSE password. The b<cpan-upload> script
+since it can contain your PAUSE password. The B<cpan-upload> script
 refuses to run if your config file can be read by others.
 
 =cut
@@ -494,8 +504,8 @@ The Perl Authors Upload SErver. The PAUSE FAQ can be seen on CPAN:
 
 =item Net::FTP
 
-Graham Barr's studly module for doing that crazy ftp thang.
-Part of the libnet distribution, available from:
+Graham Barr's FTP client module, which is
+part of the libnet distribution, available from:
 
     http://www.cpan.org/modules/by-module/Net/
 
@@ -509,15 +519,31 @@ to talk to the PAUSE web server. You can get the latest version from:
 =item AppConfig::Std
 
 The module used to handle command-line options and the configuration file.
+
+    http://www.cpan.org/authors/id/NEILB/
+
 This is actually a subclass of C<AppConfig>, which you'll also need.
 
-    http://www.cpan.org/modules/by-module/AppConfig/
+    http://www.cpan.org/authors/id/ABW/
 
 =back
 
 =head1 VERSION
 
-$Id: cpan-upload,v 1.8 2001/03/06 17:17:52 neilb Exp $
+$Revision: 1.9 $
+
+=head1 SCRIPT CATEGORIES
+
+CPAN
+
+=head1 PREREQUISITES
+
+AppConfig::Std
+Net::FTP
+HTTP::Request::Common
+LWP::UserAgent
+HTTP::Status
+File::Basename
 
 =head1 AUTHOR
 

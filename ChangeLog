@@ -1,6 +1,16 @@
 
 				ChangeLog
 
+1.9 neilb 11-march-2001
+
+	* Fixed typos in a couple of messages.
+	* Tidied up the documentation.
+	* Added mention of ftp_gateway to the section on CONFIGURATION FILE.
+	* Fixed a bad pod sequence: b<...> instead of B<...>
+	* Added SCRIPT CATEGORIES and PREREQUISITES pod sections,
+	  which are used by cpan scripts. Since this gets uploaded in a tarball,
+	  it won't currently get picked up by the cpan scripts stuff.
+
 1.8 neilb 6-march-2001
 
 	Dang! Silly bug when getting the basename of files being uploaded.

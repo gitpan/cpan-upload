@@ -1,6 +1,6 @@
 
 				cpan-upload
-				   v1.8
+				   v1.9
 
 This is a script for uploading a distribution to CPAN (using PAUSE,
 the Perl Authors Upload SErver). For example, to upload this version
@@ -35,7 +35,7 @@ version via the CPAN multiplexor at http://www.perl.com/CPAN/
 	What		Where
 
 	AppConfig::Std	$CPAN/authors/id/NEILB/AppConfig-Std-<version>.tar.gz
-	AppConfig	modules/by-module/AppConfig/
+	AppConfig	$CPAN/authors/id/ABW/
 	Pod::Usage	In the PodParser distribition
 	Net::FTP	in the libnet distribution
 	LWP		http://www.perl.com/CPAN/modules/by-module/LWP/
@@ -46,4 +46,4 @@ Neil Bowers <neilb@cre.canon.co.uk>
 Canon Research Centre Europe
 http://www.cre.canon.co.uk/
 --
-$Id: README,v 1.7 2001/03/06 17:18:11 neilb Exp $
+$Id: README,v 1.8 2001/03/11 16:02:47 neilb Exp $
