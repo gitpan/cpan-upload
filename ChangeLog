@@ -1,6 +1,18 @@
 
 				ChangeLog
 
+1.3 neilb 24-july-1998
+
+	Switched to using HTTP::Request::Common (POST function).
+
+	Now using Pod::Usage to generate the output for -help message.
+	Added a -doc switch which displays the full pod (Pod::Usage again).
+
+	Compacted the code using App::Config, given some new features
+	in the latest version of App::Config.
+
+	Added a prerequisite clause in Makefile.PL
+
 1.2 neilb 2-april-1998
 
 	The password was set to be expanded for variables by App::Config,
